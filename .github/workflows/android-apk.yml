@@ -28,8 +28,6 @@ jobs:
         with:
           packages: 'platform-tools'
 
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
 
       - name: Install Android SDK packages
         run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
