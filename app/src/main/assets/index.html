@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1322">
 <meta name="description" content="بيئة لُغتي البرمجية العربية — مفسّر اللغة ومولّد مشاريع Web مستقلة">
-<title>لُغتي — الإصدار 1.2</title>
+<title>لُغتي — الإصدار 1.3</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2e;--panel2:#172438;--line:#2b3b52;--text:#e8eef8;--muted:#9eacc0;--accent:#55a6ff;--accent-contrast:#07101c;--green:#168765;--red:#d95667;--editor:#07101c;--output:#050b13;--shadow:0 12px 32px #0003}
 :root[data-theme="light"]{color-scheme:light;--bg:#eef2f7;--panel:#fff;--panel2:#f5f7fb;--line:#d9e1ec;--text:#172338;--muted:#64748b;--accent:#2563eb;--accent-contrast:#fff;--green:#168765;--red:#c43e55;--editor:#f8fafc;--output:#172338;--shadow:0 10px 28px #24334a12}
@@ -20,79 +20,52 @@ textarea{width:100%;min-height:470px;resize:vertical;background:var(--editor);co
 </style>
 </head>
 <body>
-<header><div class="topline"><div><h1>لُغتي — بيئة التطوير</h1><p>الإصدار 1.2 · لغة برمجة عربية وبيئة عمل مستقلة</p><div class="signature" dir="ltr">yasser Alhussen/daraa - syria</div></div><div class="header-tools"><select id="themeMode" aria-label="المظهر"><option value="system">حسب الجهاز</option><option value="dark">داكن</option><option value="light">فاتح</option></select><label for="accentColor" style="font-size:12px;color:var(--muted)">لون الواجهة</label><input id="accentColor" type="color" value="#55a6ff" aria-label="لون الواجهة"></div></div></header>
+<header><div class="topline"><div><h1>لُغتي — بيئة التطوير</h1><p>الإصدار 1.3 · لغة برمجة عربية وبيئة عمل مستقلة</p><div class="signature" dir="ltr">yasser Alhussen/daraa - syria</div></div><div class="header-tools"><select id="themeMode" aria-label="المظهر"><option value="system">حسب الجهاز</option><option value="dark">داكن</option><option value="light">فاتح</option></select><label for="accentColor" style="font-size:12px;color:var(--muted)">لون الواجهة</label><input id="accentColor" type="color" value="#55a6ff" aria-label="لون الواجهة"></div></div></header>
 <main>
 <section class="panel workspace-panel"><div class="head"><span>مساحة العمل</span><button id="addMenu" class="alt" style="padding:6px 10px">إضافة +</button></div><div class="body"><div class="workspace-title">ملفات المشروع</div><div id="workspaceFiles" class="file-list"></div><div class="actions"><button id="newProject" class="ghost" style="width:100%">مشروع جديد</button></div></div></section>
 <section class="panel editor-panel">
  <div class="head"><span>محرر الشيفرة</span><span style="font-size:12px;color:var(--muted)">main.lughati · Lughati Core</span></div>
  <div class="body">
-<textarea id="src" spellcheck="false" dir="ltr"># برنامج تجريبي بلغة لُغتي
-دع الاسم = "العالم"
-دع العدد = 5
+<textarea id="src" spellcheck="false" dir="ltr"># تجربة تفاعلية للإصدار 1.3
+دع العداد = 0
+دع الاسم = "زائر"
 
-دالة مربع(س) {
-    ارجع س * س
+دالة زد() {
+    العداد = العداد + 1
+    اعرض_واجهة({
+        عنوان: "مرحباً " + الاسم,
+        عناصر: [
+            {نوع: "عنوان", نص: "عداد تفاعلي"},
+            {نوع: "نص", نص: "عدد النقرات: " + نص(العداد)},
+            {نوع: "زر", نص: "زيادة العداد", عند_الضغط: زد},
+            {نوع: "حقل", اسم: "اسمك", تلميح: "اكتب اسمك هنا", قيمة: الاسم, عند_التغيير: غيّر_الاسم}
+        ]
+    })
 }
 
-اطبع "مرحباً يا " + الاسم
-اطبع "مربع العدد:"
-اطبع مربع(العدد)
-
-إذا العدد > 3 {
-    اطبع "العدد أكبر من ثلاثة"
-} وإلا {
-    اطبع "العدد صغير"
+دالة غيّر_الاسم(القيمة) {
+    الاسم = القيمة
+    اعرض_واجهة({
+        عنوان: "مرحباً " + الاسم,
+        عناصر: [
+            {نوع: "عنوان", نص: "عداد تفاعلي"},
+            {نوع: "نص", نص: "عدد النقرات: " + نص(العداد)},
+            {نوع: "زر", نص: "زيادة العداد", عند_الضغط: زد},
+            {نوع: "حقل", اسم: "اسمك", تلميح: "اكتب اسمك هنا", قيمة: الاسم, عند_التغيير: غيّر_الاسم}
+        ]
+    })
 }
 
-دع عداد = 1
-طالما عداد <= 3 {
-    اطبع عداد
-    عداد = عداد + 1
-}
-
-# قوائم وكائنات ومكتبة أساسية
-دع درجات = [90, 85, 100]
-أضف(درجات, 95)
-اطبع "عدد الدرجات: " + طول(درجات)
-اطبع درجات[3]
-
-دع طالب = {اسم: "ياسر", المدينة: "درعا", نشط: صحيح}
-اطبع طالب.اسم
-طالب.المدينة = "سوريا"
-اطبع طالب
-
-# تكرار العناصر والتحكم بالحلقة
-لكل درجة في درجات {
-    إذا درجة < 90 { تابع }
-    اطبع درجة
-}
-لكل رقم في مدى(1, 6) {
-    إذا رقم == 4 { كسر }
-    اطبع رقم
-}
-
-# معالجة الاستثناءات
-حاول {
-    اطبع "قبل القسمة"
-    ارم "حدث خطأ تجريبي"
-} التقط المشكلة {
-    اطبع "تم التقاط: " + المشكلة
-} أخيراً {
-    اطبع "تنفيذ كتلة أخيراً دائماً"
-}
-
-# إنشاء واجهة مستخدم
 اعرض_واجهة({
-    عنوان: "تطبيقي الأول",
-    خلفية: "hsl(210 100% 97%)",
+    عنوان: "مرحباً " + الاسم,
+    خلفية: "#edf4fb",
     لون_النص: "#183153",
     عناصر: [
-        {نوع: "عنوان", نص: "مرحباً بك في لُغتي", لون: "hsl(214 75% 38%)"},
-        {نوع: "نص", نص: "هذه واجهة أنشأها برنامج لُغتي."},
-        {نوع: "حقل", تلميح: "اكتب اسمك"},
-        {نوع: "زر", نص: "جرّب الزر", رسالة: "أحسنت! التفاعل يعمل."},
-        {نوع: "بطاقة", نص: "يمكنك تخصيص الألوان والعناصر."},
-        {نوع: "فاصل"}
+        {نوع: "عنوان", نص: "عداد تفاعلي بلغة لُغتي"},
+        {نوع: "نص", نص: "عدد النقرات: " + نص(العداد)},
+        {نوع: "زر", نص: "زيادة العداد", عند_الضغط: زد},
+        {نوع: "حقل", اسم: "اسمك", تلميح: "اكتب اسمك هنا", قيمة: الاسم, عند_التغيير: غيّر_الاسم},
+        {نوع: "بطاقة", نص: "جرّب الزر واكتب اسمك؛ ستتغير الواجهة مباشرة."}
     ]
 })</textarea>
  <div class="actions">
@@ -117,7 +90,7 @@ textarea{width:100%;min-height:470px;resize:vertical;background:var(--editor);co
   المهام: <code>انتظر تأخير(500)</code> للانتظار · <code>تأخير(مدة, قيمة)</code> لإنشاء مهمة مؤجلة · <code>اجمع_المهام([مهمة1, مهمة2])</code> لانتظار مجموعة مهام بالتوازي<br>
   القوائم: <code>[1, 2, 3]</code> والفهرسة <code>قائمة[0]</code> والخصائص <code>قائمة.طول</code><br>
   الكائنات: <code>{اسم: "ياسر", عمر: 30}</code> وقراءة/تعديل الخصائص<br>
-  الوحدات: <code>استورد "رياضيات" كـ رياضيات</code> لاستيراد ملف <code>رياضيات.lughati</code>، و<code>صدّر الاسم</code> لإتاحة عنصر من الوحدة.<br>مكتبة أساسية: <code>طول</code>، <code>أضف</code>، <code>احذف</code>، <code>مفاتيح</code>، <code>نوع</code>، <code>نص</code>، <code>رقم</code>، <code>مدى</code>، <code>يحتوي</code> · التعليقات <code>#</code> أو <code>//</code>.<br>واجهات المستخدم: <code>اعرض_واجهة({عنوان: "تطبيقي", خلفية: "#f4f8ff", عناصر: [{نوع: "عنوان", نص: "مرحباً"}, {نوع: "زر", نص: "اضغط هنا", رسالة: "أهلاً بك"}]})</code>. الأنواع: عنوان، نص، بطاقة، زر، حقل، فاصل. الألوان تقبل قيم CSS مثل HEX وRGB وHSL واسم اللون وvar() الآمن.
+  الوحدات: <code>استورد "رياضيات" كـ رياضيات</code> لاستيراد ملف <code>رياضيات.lughati</code>، و<code>صدّر الاسم</code> لإتاحة عنصر من الوحدة.<br>مكتبة أساسية: <code>طول</code>، <code>أضف</code>، <code>احذف</code>، <code>مفاتيح</code>، <code>نوع</code>، <code>نص</code>، <code>رقم</code>، <code>مدى</code>، <code>يحتوي</code> · التعليقات <code>#</code> أو <code>//</code>.<br>واجهات المستخدم: <code>اعرض_واجهة({عنوان: "تطبيقي", خلفية: "#f4f8ff", عناصر: [{نوع: "عنوان", نص: "مرحباً"}, {نوع: "زر", نص: "اضغط هنا", رسالة: "أهلاً بك"}]})</code>. الأنواع: عنوان، نص، بطاقة، زر، حقل، فاصل. في 1.3 يمكن ربط الزر بدالة عبر عند_الضغط: اسم_الدالة، وربط الحقل بدالة تستقبل النص عبر عند_التغيير: اسم_الدالة، وتحديد قيمة أولية للحقل عبر قيمة. الألوان تقبل قيم CSS مثل HEX وRGB وHSL واسم اللون وvar() الآمن.
  </div>
  </div>
 </section>
@@ -134,7 +107,7 @@ textarea{width:100%;min-height:470px;resize:vertical;background:var(--editor);co
 </section>
 </main>
 <footer>
-الإصدار 1.2 يضيف مساحة عمل بملفات قابلة للتبديل ومظهراً قابلاً للتخصيص مع حفظ تفضيلات المستخدم، مع الحفاظ على محرك اللغة وميزات الإصدار السابق. كما يتضمن فاحص المشروع وتصدير Web متعدد الملفات. لا يزال هذا الإصدار لا ينتج APK بذاته. الإصدار السابق يضيف فاحصاً للمشروع متعدد الملفات، إلى جانب تصدير مشروع لُغتي متعدد الملفات إلى صفحة HTML مستقلة تتضمن المفسّر ومدير الوحدات، ثم تشغّل ملف main.lughati والوحدات المستوردة داخل المتصفح. تبقى واجهات المستخدم محصورة بالعناصر والتفاعلات التي تدعمها مكتبة الواجهات الحالية. هذا ليس مترجماً إلى JavaScript ولا مولّداً لحزمة Android APK. التنفيذ عبر محلّل ومفسّر دون eval أو new Function.
+الإصدار 1.3 يضيف ربط أحداث الواجهة بدوال اللغة، مع الحفاظ على مساحة العمل وملفاتها ومظهراً قابلاً للتخصيص مع حفظ تفضيلات المستخدم، مع الحفاظ على محرك اللغة وميزات الإصدار السابق. كما يتضمن فاحص المشروع وتصدير Web متعدد الملفات. لا يزال هذا الإصدار لا ينتج APK بذاته. الإصدار السابق يضيف فاحصاً للمشروع متعدد الملفات، إلى جانب تصدير مشروع لُغتي متعدد الملفات إلى صفحة HTML مستقلة تتضمن المفسّر ومدير الوحدات، ثم تشغّل ملف main.lughati والوحدات المستوردة داخل المتصفح. تبقى واجهات المستخدم محصورة بالعناصر والتفاعلات التي تدعمها مكتبة الواجهات الحالية. هذا ليس مترجماً إلى JavaScript ولا مولّداً لحزمة Android APK. التنفيذ عبر محلّل ومفسّر دون eval أو new Function.
 </footer>
 <div id="addSheet" class="add-sheet" role="dialog" aria-modal="true" aria-label="إضافة إلى المشروع"><div class="sheet-card"><h2 class="sheet-title">إضافة +</h2><div class="sheet-grid"><button class="sheet-action" id="sheetNewProject"><span>📁</span><span>مشروع جديد</span></button><button class="sheet-action" id="sheetNewFile"><span>📝</span><span>ملف جديد</span></button><button class="sheet-action" id="sheetImportFolder"><span>📂</span><span>استيراد مجلد</span></button><button class="sheet-action" id="sheetImportFile"><span>📄</span><span>استيراد ملف مشروع</span></button></div><button id="closeSheet" class="ghost sheet-close">إغلاق</button></div></div>
 <input id="folderInput" type="file" webkitdirectory directory multiple hidden>
@@ -271,7 +244,7 @@ class Interpreter {
   add("رقم",a=>{this.arity(a,1,"رقم");const n=Number(a[0]);if(!Number.isFinite(n))throw new LangError("تعذر تحويل القيمة إلى رقم.");return n;});
   add("مدى",a=>{if(a.length<1||a.length>3)throw new LangError("مدى تقبل وسيطاً إلى ثلاثة وسائط.");let start=0,end,step=1;if(a.length===1)end=this.number(a[0]);else{start=this.number(a[0]);end=this.number(a[1]);if(a.length===3)step=this.number(a[2]);}if(step===0)throw new LangError("خطوة مدى لا يمكن أن تكون صفراً.");const out=[];for(let n=start;(step>0?n<end:n>end);n+=step){if(out.length>=10000)throw new LangError("مدى تتجاوز الحد الأقصى 10,000 عنصر.");out.push(n);}return out;});
   add("يحتوي",a=>{this.arity(a,2,"يحتوي");if(typeof a[0]==="string"||Array.isArray(a[0]))return a[0].includes(a[1]);if(a[0]&&typeof a[0]==="object")return Object.prototype.hasOwnProperty.call(a[0],a[1]);throw new LangError("يحتوي تتطلب نصاً أو قائمة أو كائناً.");});
-  add("اعرض_واجهة",a=>{this.arity(a,1,"اعرض_واجهة");if(!a[0]||typeof a[0]!=="object"||Array.isArray(a[0]))throw new LangError("اعرض_واجهة تتطلب كائناً يصف الواجهة.");if(!this.renderUI)throw new LangError("عارض الواجهات غير متاح في هذا السياق.");this.renderUI(a[0]);return null;});
+  add("اعرض_واجهة",a=>{this.arity(a,1,"اعرض_واجهة");if(!a[0]||typeof a[0]!=="object"||Array.isArray(a[0]))throw new LangError("اعرض_واجهة تتطلب كائناً يصف الواجهة.");if(!this.renderUI)throw new LangError("عارض الواجهات غير متاح في هذا السياق.");this.renderUI(a[0],this);return null;});
   add("تأخير",a=>{if(a.length<1||a.length>2)throw new LangError("تأخير تتطلب مدة اختيارياً وقيمة.");const ms=this.number(a[0]);if(ms<0||ms>60000)throw new LangError("مدة التأخير يجب أن تكون بين 0 و60,000 ملي ثانية.");return new Promise(resolve=>setTimeout(()=>resolve(a.length===2?a[1]:null),ms));});
   add("اجمع_المهام",a=>{this.arity(a,1,"اجمع_المهام");if(!Array.isArray(a[0])||a[0].some(x=>!x||typeof x.then!=="function"))throw new LangError("اجمع_المهام تتطلب قائمة من المهام.");return Promise.all(a[0]);});
  }
@@ -335,6 +308,13 @@ class Interpreter {
    case "return":throw new ReturnSignal(this.evaluate(s.value,env));
   }
  }
+ invokeFunction(fn,args=[],line=1){
+  if(!fn||!fn.__fn)throw new LangError("معالج الحدث يجب أن يكون اسم دالة معرّفة.",line);
+  if(args.length!==fn.params.length)throw new LangError(`عدد معاملات الدالة غير صحيح؛ المطلوب ${fn.params.length}.`,line);
+  if(++this.depth>100)throw new LangError("تجاوز عمق استدعاء الدوال الحد المسموح.",line);
+  const local=new Environment(fn.closure);fn.params.forEach((p,i)=>local.define(p,args[i]));
+  try{this.executeSyncBlock(fn.body,local);return null;}catch(x){if(x instanceof ReturnSignal)return x.value;throw x;}finally{this.depth--;}
+ }
  evaluate(e,env){
   switch(e.type){
    case "literal":return e.value;
@@ -361,10 +341,7 @@ class Interpreter {
     const fn=this.evaluate(e.callee,env),args=e.args.map(a=>this.evaluate(a,env));
     if(fn&&fn.__builtin)return fn.call(args);
     if(!fn||!fn.__fn)throw new LangError("العنصر المستدعى ليس دالة.");
-    if(args.length!==fn.params.length)throw new LangError(`عدد المعاملات غير صحيح؛ المطلوب ${fn.params.length}.`);
-    if(++this.depth>100)throw new LangError("تجاوز عمق استدعاء الدوال الحد المسموح.");
-    const local=new Environment(fn.closure);fn.params.forEach((p,i)=>local.define(p,args[i]));
-    try{this.executeSyncBlock(fn.body,local);return null;}catch(x){if(x instanceof ReturnSignal)return x.value;throw x;}finally{this.depth--;}
+    return this.invokeFunction(fn,args,e.line||1);
    }
   }
  }
@@ -386,9 +363,10 @@ function refreshFiles(){const sel=$("fileSelect");sel.innerHTML="";const names=O
 function saveActive(){project[activeFile]=$("src").value;}
 function switchFile(name){saveActive();if(!Object.prototype.hasOwnProperty.call(project,name))return;activeFile=name;$("src").value=project[name];refreshFiles();}
 function normalizeModule(name,line){let n=String(name).trim().replace(/\\/g,"/");if(!n.endsWith(".lughati"))n+=".lughati";if(n.startsWith("/")||n.split("/").some(x=>!x||x==="."||x==="..")||!/^[-\p{L}\p{N}_./]+\.lughati$/u.test(n))throw new LangError("مسار الوحدة غير مسموح: "+name,line);return n;}
-function renderLughatiUI(config){
- const root=$("uiPreview"),hint=$("uiHint");root.replaceChildren();$("exportWeb").disabled=true;
+function renderLughatiUI(config,interpreter=null){
+ const root=$("uiPreview"),hint=$("uiHint");const activeInput=root.contains(document.activeElement)&&document.activeElement instanceof HTMLInputElement?document.activeElement:null;const activeIndex=activeInput?[...root.querySelectorAll("input")].indexOf(activeInput):-1;const selection=activeInput?{start:activeInput.selectionStart,end:activeInput.selectionEnd}:null;root.replaceChildren();$("exportWeb").disabled=true;
  const safeText=(v,fallback="")=>v===undefined||v===null?fallback:String(v);
+ const showFeedback=message=>{let note=root.querySelector(".lug-feedback");if(!note){note=document.createElement("div");note.className="lug-feedback";root.appendChild(note);}note.textContent=String(message);};
  const color=(v,prop)=>{if(v===undefined||v===null||v==="")return;const value=String(v).trim();if(value.length>120||/[;{}<>]/.test(value))throw new LangError("قيمة اللون غير آمنة أو طويلة.");if(!CSS.supports(prop,value))throw new LangError("قيمة لون غير صالحة: "+value);return value;};
  const title=safeText(config.عنوان,"واجهة لُغتي");const bg=color(config.خلفية,"background-color");
  root.style.backgroundColor=bg||"#ffffff";
@@ -400,14 +378,23 @@ function renderLughatiUI(config){
   else if(type==="نص"){el=document.createElement("p");el.className="lug-text";el.textContent=safeText(item.نص);}
   else if(type==="بطاقة"){el=document.createElement("div");el.className="lug-card";el.textContent=safeText(item.نص);}
   else if(type==="فاصل"){el=document.createElement("hr");}
-  else if(type==="حقل"){el=document.createElement("input");el.type="text";el.placeholder=safeText(item.تلميح,"اكتب هنا");el.setAttribute("aria-label",safeText(item.اسم,"حقل إدخال"));}
-  else if(type==="زر"){el=document.createElement("button");el.type="button";el.textContent=safeText(item.نص,"زر");const message=safeText(item.رسالة,"تم الضغط على الزر.");el.dataset.lugMessage=message;el.addEventListener("click",()=>{let note=root.querySelector(".lug-feedback");if(!note){note=document.createElement("div");note.className="lug-feedback";root.appendChild(note);}note.textContent=message;});}
+  else if(type==="حقل"){
+   el=document.createElement("input");el.type="text";el.placeholder=safeText(item.تلميح,"اكتب هنا");el.setAttribute("aria-label",safeText(item.اسم,"حقل إدخال"));
+   if(item.قيمة!==undefined)el.value=safeText(item.قيمة);
+   if(item.عند_التغيير!==undefined){const handler=item.عند_التغيير;if(!interpreter||!handler||!handler.__fn)throw new LangError("عند_التغيير يجب أن تشير إلى دالة معرّفة.");el.addEventListener("input",()=>{try{interpreter.invokeFunction(handler,[el.value]);}catch(err){showFeedback(err instanceof LangError?err.toString():String(err));}});}
+  }
+  else if(type==="زر"){
+   el=document.createElement("button");el.type="button";el.textContent=safeText(item.نص,"زر");
+   if(item.عند_الضغط!==undefined){const handler=item.عند_الضغط;if(!interpreter||!handler||!handler.__fn)throw new LangError("عند_الضغط يجب أن تشير إلى دالة معرّفة.");el.addEventListener("click",()=>{try{interpreter.invokeFunction(handler,[]);}catch(err){showFeedback(err instanceof LangError?err.toString():String(err));}});}
+   else{const message=safeText(item.رسالة,"تم الضغط على الزر.");el.dataset.lugMessage=message;el.addEventListener("click",()=>showFeedback(message));}
+  }
   else throw new LangError("نوع عنصر واجهة غير مدعوم: "+type);
   const c=color(item.لون,"color"),b=color(item.خلفية,"background-color");if(c)el.style.color=c;if(b)el.style.backgroundColor=b;
   if(item.حجم!==undefined){const size=Number(item.حجم);if(!Number.isFinite(size)||size<8||size>64)throw new LangError("حجم النص يجب أن يكون بين 8 و64 بكسل.");el.style.fontSize=size+"px";}
   root.appendChild(el);
  }
- hint.textContent="تم إنشاء الواجهة محلياً. التفاعل مع الأزرار يعمل داخل المعاينة.";$("exportWeb").disabled=false;
+ if(activeIndex>=0){const nextInput=root.querySelectorAll("input")[activeIndex];if(nextInput){nextInput.focus();if(selection&&typeof nextInput.setSelectionRange==="function")nextInput.setSelectionRange(selection.start,selection.end);}}
+ hint.textContent="تم إنشاء الواجهة محلياً. التفاعل مع الأزرار والحقول يعمل داخل المعاينة.";$("exportWeb").disabled=false;
 }
 function exportWebPage(){
  saveActive();
@@ -428,7 +415,7 @@ const $=id=>document.getElementById(id);
 ${normalizeSource}
 const files=JSON.parse($("lug-project").textContent).files;
 const root=$("app"),out=$("output"),status=$("status");
-function renderLughatiUI(config){root.replaceChildren();const safe=(v,d="")=>v===undefined||v===null?d:String(v);const color=(v,prop)=>{if(v===undefined||v===null||v==="")return;const value=String(v).trim();if(value.length>120||/[;{}<>]/.test(value)||!CSS.supports(prop,value))throw new LangError("قيمة لون غير صالحة: "+value);return value;};root.style.backgroundColor=color(config.خلفية,"background-color")||"#fff";const fg=color(config.لون_النص,"color");if(fg)root.style.color=fg;const title=safe(config.عنوان,"واجهة لُغتي");if(title){const h=document.createElement("h2");h.className="lug-title";h.textContent=title;root.appendChild(h);}const items=config.عناصر??[];if(!Array.isArray(items)||items.length>100)throw new LangError("قائمة عناصر الواجهة غير صالحة.");for(const item of items){if(!item||typeof item!=="object"||Array.isArray(item))throw new LangError("عنصر واجهة غير صالح.");const type=safe(item.نوع);let el;if(type==="عنوان"){el=document.createElement("h3");el.className="lug-title";el.textContent=safe(item.نص);}else if(type==="نص"){el=document.createElement("p");el.className="lug-text";el.textContent=safe(item.نص);}else if(type==="بطاقة"){el=document.createElement("div");el.className="lug-card";el.textContent=safe(item.نص);}else if(type==="فاصل"){el=document.createElement("hr");}else if(type==="حقل"){el=document.createElement("input");el.placeholder=safe(item.تلميح,"اكتب هنا");el.setAttribute("aria-label",safe(item.اسم,"حقل إدخال"));}else if(type==="زر"){el=document.createElement("button");el.type="button";el.textContent=safe(item.نص,"زر");const message=safe(item.رسالة,"تم الضغط على الزر.");el.addEventListener("click",()=>{let note=root.querySelector(".lug-feedback");if(!note){note=document.createElement("div");note.className="lug-feedback";root.appendChild(note);}note.textContent=message;});}else throw new LangError("نوع عنصر واجهة غير مدعوم: "+type);const c=color(item.لون,"color"),b=color(item.خلفية,"background-color");if(c)el.style.color=c;if(b)el.style.backgroundColor=b;if(item.حجم!==undefined){const n=Number(item.حجم);if(!Number.isFinite(n)||n<8||n>64)throw new LangError("حجم النص يجب أن يكون بين 8 و64 بكسل.");el.style.fontSize=n+"px";}root.appendChild(el);}}
+function renderLughatiUI(config,interpreter=null){const activeInput=root.contains(document.activeElement)&&document.activeElement instanceof HTMLInputElement?document.activeElement:null;const activeIndex=activeInput?[...root.querySelectorAll("input")].indexOf(activeInput):-1;const selection=activeInput?{start:activeInput.selectionStart,end:activeInput.selectionEnd}:null;root.replaceChildren();const safe=(v,d="")=>v===undefined||v===null?d:String(v);const feedback=message=>{let note=root.querySelector(".lug-feedback");if(!note){note=document.createElement("div");note.className="lug-feedback";root.appendChild(note);}note.textContent=String(message);};const color=(v,prop)=>{if(v===undefined||v===null||v==="")return;const value=String(v).trim();if(value.length>120||/[;{}<>]/.test(value)||!CSS.supports(prop,value))throw new LangError("قيمة لون غير صالحة: "+value);return value;};root.style.backgroundColor=color(config.خلفية,"background-color")||"#fff";const fg=color(config.لون_النص,"color");if(fg)root.style.color=fg;const title=safe(config.عنوان,"واجهة لُغتي");if(title){const h=document.createElement("h2");h.className="lug-title";h.textContent=title;root.appendChild(h);}const items=config.عناصر??[];if(!Array.isArray(items)||items.length>100)throw new LangError("قائمة عناصر الواجهة غير صالحة.");for(const item of items){if(!item||typeof item!=="object"||Array.isArray(item))throw new LangError("عنصر واجهة غير صالح.");const type=safe(item.نوع);let el;if(type==="عنوان"){el=document.createElement("h3");el.className="lug-title";el.textContent=safe(item.نص);}else if(type==="نص"){el=document.createElement("p");el.className="lug-text";el.textContent=safe(item.نص);}else if(type==="بطاقة"){el=document.createElement("div");el.className="lug-card";el.textContent=safe(item.نص);}else if(type==="فاصل"){el=document.createElement("hr");}else if(type==="حقل"){el=document.createElement("input");el.placeholder=safe(item.تلميح,"اكتب هنا");el.setAttribute("aria-label",safe(item.اسم,"حقل إدخال"));if(item.قيمة!==undefined)el.value=safe(item.قيمة);if(item.عند_التغيير!==undefined){const handler=item.عند_التغيير;if(!interpreter||!handler||!handler.__fn)throw new LangError("عند_التغيير يجب أن تشير إلى دالة معرّفة.");el.addEventListener("input",()=>{try{interpreter.invokeFunction(handler,[el.value]);}catch(err){feedback(err instanceof LangError?err.toString():String(err));}});}}else if(type==="زر"){el=document.createElement("button");el.type="button";el.textContent=safe(item.نص,"زر");if(item.عند_الضغط!==undefined){const handler=item.عند_الضغط;if(!interpreter||!handler||!handler.__fn)throw new LangError("عند_الضغط يجب أن تشير إلى دالة معرّفة.");el.addEventListener("click",()=>{try{interpreter.invokeFunction(handler,[]);}catch(err){feedback(err instanceof LangError?err.toString():String(err));}});}else{const message=safe(item.رسالة,"تم الضغط على الزر.");el.addEventListener("click",()=>feedback(message));}}else throw new LangError("نوع عنصر واجهة غير مدعوم: "+type);const c=color(item.لون,"color"),b=color(item.خلفية,"background-color");if(c)el.style.color=c;if(b)el.style.backgroundColor=b;if(item.حجم!==undefined){const n=Number(item.حجم);if(!Number.isFinite(n)||n<8||n>64)throw new LangError("حجم النص يجب أن يكون بين 8 و64 بكسل.");el.style.fontSize=n+"px";}root.appendChild(el);}if(activeIndex>=0){const nextInput=root.querySelectorAll("input")[activeIndex];if(nextInput){nextInput.focus();if(selection&&typeof nextInput.setSelectionRange==="function")nextInput.setSelectionRange(selection.start,selection.end);}}}
 async function runProject(){try{const cache=new Map(),loading=new Set();let steps=0;async function loadModule(request,line){const name=normalizeModule(request,line);if(!Object.prototype.hasOwnProperty.call(files,name))throw new LangError("الملف المطلوب غير موجود: "+name,line);if(cache.has(name))return cache.get(name);if(loading.has(name))throw new LangError("استيراد دائري: "+name,line);loading.add(name);try{const ast=new Parser(new Lexer(files[name]).scan()).parse();const vm=new Interpreter(()=>{},loadModule,renderLughatiUI);await vm.run(ast);steps+=vm.steps;const exports=Object.freeze({...vm.exports});cache.set(name,exports);return exports;}finally{loading.delete(name);}}const main=files["main.lughati"];if(typeof main!=="string")throw new LangError("ملف main.lughati غير موجود.");const ast=new Parser(new Lexer(main).scan()).parse();const vm=new Interpreter(line=>{out.textContent+=(out.textContent?"\\n":"")+line;},loadModule,renderLughatiUI);await vm.run(ast);steps+=vm.steps;status.textContent="تم تشغيل المشروع بنجاح · "+steps+" خطوة تنفيذية";}catch(e){status.className="err";status.textContent=e instanceof LangError?e.toString():e instanceof ThrowSignal?"استثناء غير ملتقط في السطر "+e.line+": "+new Interpreter(()=>{}).stringify(e.value):"خطأ: "+(e&&e.message||e);}}
 runProject();
 <\/script></body></html>`;
